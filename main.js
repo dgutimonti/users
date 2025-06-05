@@ -46,7 +46,7 @@ users.push(
         users.length + 1,
         'Daniel Ivan Gutierrez Montiel',
         'danielguti',
-        'daniel@example.com',
+        'daniel@gutierrezmontiel.com',
         'password123',
         new Date(),
         'daniel.jpg',
