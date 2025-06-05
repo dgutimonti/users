@@ -2,7 +2,7 @@
 
 const express = require('express');
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Middleware for parsing JSON
 app.use(express.json());
@@ -46,7 +46,7 @@ users.push(
         users.length + 1,
         'Daniel Ivan Gutierrez Montiel',
         'danielguti',
-        'daniel@example.com',
+        'daniel@gutierrezmontiel.com',
         'password123',
         new Date(),
         'daniel.jpg',
@@ -142,6 +142,7 @@ app.get('/', (req, res) => {
     res.send('Welcome to the User API!');
 });
 // Start server
-app.listen(3000, () => {
-    console.log('Server running on port 3000');
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
