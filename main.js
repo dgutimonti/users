@@ -40,6 +40,54 @@ let users = [
     new User(3, 'Robert Brown', 'robbrown', 'robert@example.com', 'password123', new Date(), 'robert.jpg', 'user')
 ];
 
+// Add Daniel Ivan Gutierrez Montiel
+users.push(
+    new User(
+        users.length + 1,
+        'Daniel Ivan Gutierrez Montiel',
+        'danielguti',
+        'daniel@example.com',
+        'password123',
+        new Date(),
+        'daniel.jpg',
+        'user'
+    )
+);
+
+// Route to show users in an HTML table
+app.get('/users/table', (req, res) => {
+    let tableRows = users.map(user => `
+        <tr>
+            <td>${user.id}</td>
+            <td>${user.name}</td>
+            <td>${user.username}</td>
+            <td>${user.email}</td>
+            <td>${user.rol}</td>
+        </tr>
+    `).join('');
+    res.send(`
+        <html>
+        <head>
+            <title>Users Table</title>
+        </head>
+        <body>
+            <h1>Users</h1>
+            <table border="1">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                </tr>
+                ${tableRows}
+            </table>
+        </body>
+        </html>
+    `);
+});
+
+// CRUD Endpoints
 // CRUD Endpoints
 
 // Get all users
@@ -90,8 +138,10 @@ app.delete('/users/:id', (req, res) => {
     users = users.filter(u => u.id != req.params.id);
     res.status(204).send();
 });
-
+app.get('/', (req, res) => {
+    res.send('Welcome to the User API!');
+});
 // Start server
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(3000, () => {
+    console.log('Server running on port 3000');
 });
